@@ -1,5 +1,7 @@
-import React from "react";
+//import React from "react";
+import React, { useEffect } from "react";
 import { profile } from "./data";
+
 
 function Section({ title, children }) {
   return (
@@ -24,29 +26,94 @@ function LinkButton({ href, children }) {
   );
 }
 
-function Card({ title, href, description }) {
-  const inner = (
-    <>
-      <div className="cardTitleRow">
-        <h3 className="cardTitle">{title}</h3>
-        <span className="cardArrow" aria-hidden="true">↗</span>
-      </div>
-      <p className="cardDesc">{description}</p>
-    </>
-  );
+function Card({ title, href, description, grade, links }) {
+  const hasMainLink = Boolean(href && href !== "#");
+  const target = hasMainLink && String(href).startsWith("http") ? "_blank" : undefined;
 
-  return href && href !== "#" ? (
-    <a className="card" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-      {inner}
-    </a>
-  ) : (
-    <div className="card">{inner}</div>
+  return (
+    <div className="card">
+      <div className="cardTitleRow">
+        <h3 className="cardTitle">
+          {hasMainLink ? (
+            <a
+              href={href}
+              target={target}
+              rel="noreferrer"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {title}
+            </a>
+          ) : (
+            title
+          )}
+          {grade ? <span className="badge">{grade}</span> : null}
+        </h3>
+
+        {hasMainLink ? (
+          <a
+            className="cardArrow"
+            href={href}
+            target={target}
+            rel="noreferrer"
+            aria-label={`Open ${title}`}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            ↗
+          </a>
+        ) : null}
+      </div>
+
+      {description ? <p className="cardDesc">{description}</p> : null}
+
+      {Array.isArray(links) && links.length > 0 ? (
+        <div className="linkRow">
+          {links.map((l) => (
+            <a
+              key={`${title}-${l.label}-${l.href}`}
+              className="pillLink"
+              href={l.href}
+              target={String(l.href).startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
 export default function App() {
+  useEffect(() => {
+    let raf = 0;
+
+    const update = () => {
+      const y = window.scrollY || 0;
+      document.documentElement.style.setProperty("--scrollYpx", `${y}px`);
+      raf = 0;
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <div className="page">
+<div className="bg" aria-hidden="true">
+  <div className="bgLayer bgLayer1" />
+  <div className="bgLayer bgLayer2" />
+</div>        
       <header className="topbar">
         <div className="container topbarInner">
           {/* <div className="brand">
@@ -57,9 +124,11 @@ export default function App() {
             </div>
           </div> */}
           <nav className="nav">
-            <a href="#focus">Focus</a>
+           
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
-            <a href="#now">Now</a>
+            {/* <a href="#now">Now</a> */}
           </nav>
         </div>
       </header>
@@ -85,10 +154,11 @@ export default function App() {
             </div>
 
             <div className="chipRow" aria-label="Key keywords">
-              <Chip>RAG</Chip>
-              <Chip>Evaluation</Chip>
-              <Chip>LLM Product</Chip>
-              <Chip>Low-resource NLP</Chip>
+              <Chip>Deep Packet Inspection</Chip>
+              <Chip>Consumer Analytics</Chip>
+              <Chip>Climate Tech</Chip>
+              <Chip>Human-Computer Interaction (HCI) Research</Chip>
+              <Chip>Natural Language Processing (NLP) Techniques</Chip>
             </div>
           </div>
 
@@ -107,15 +177,89 @@ export default function App() {
           </div> */}
         </section>
 
-        <div id="focus" />
-        <Section title="Focus">
-          <ul className="focusList">
-            {profile.focus.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-        </Section>
 
+        
+
+        <div id="education" />
+        <Section title="Education">
+          <div className="stack">
+            {(profile.education ?? []).map((e) => (
+              <div key={`${e.school}-${e.degree}-${e.dates}`} className="role">
+                <div className="roleTopRow">
+                  <div className="roleTitle">
+                    <strong>{e.degree}</strong>
+                    <span className="roleSep"> · </span>
+                    <span>{e.school}</span>
+                  </div>
+                  <div className="roleDates">{e.dates}</div>
+                </div>
+
+                {Array.isArray(e.highlights) && e.highlights.length > 0 ? (
+                  <ul className="bullets">
+                    {e.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </Section>
+<div id="experience" />
+        <Section title="Experience">
+          <div className="stack">
+            {(profile.experience ?? []).map((r) => (
+              <div key={`${r.company}-${r.title}-${r.dates}`} className="role">
+                <div className="roleTopRow">
+                  <div className="roleTitle">
+                    <strong>{r.title}</strong>
+                    <span className="roleSep"> · </span>
+                    {r.companyUrl ? (
+                      <a
+                        className="inlineLink"
+                        href={r.companyUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {r.company}
+                      </a>
+                    ) : (
+                      <span>{r.company}</span>
+                    )}
+                  </div>
+                  <div className="roleDates">{r.dates}</div>
+                </div>
+
+                {r.overview ? <p className="roleOverview">{r.overview}</p> : null}
+
+                {Array.isArray(r.examples) && r.examples.length > 0 ? (
+                  <div className="linkRow">
+                    <span className="mutedLabel">Selected work:</span>
+                    {r.examples.map((ex) => (
+                      <a
+                        key={ex.href}
+                        className="pillLink"
+                        href={ex.href}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {ex.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+
+                {Array.isArray(r.highlights) && r.highlights.length > 0 ? (
+                  <ul className="bullets">
+                    {r.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </Section>
         <div id="projects" />
         <Section title="Projects">
           {profile.projects.map((group) => (
@@ -130,13 +274,13 @@ export default function App() {
           ))}
         </Section>
 
-        <div id="now" />
+        {/* <div id="now" />
         <Section title="Now">
           <p className="nowText">
-            I’m preparing for PM interviews and looking for roles where I can build and scale LLM-enabled products end-to-end,
-            with a strong emphasis on evaluation and measurable outcomes.
+            I’m preparing for PM interviews and looking for roles applying AI to measurable social good (climate, public sector delivery,
+            and responsible human-centered AI). I’m especially interested in teams that take evaluation seriously and ship end-to-end.
           </p>
-        </Section>
+        </Section> */}
 
         <footer className="footer">
           <div className="footerInner">

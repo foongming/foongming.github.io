@@ -9,7 +9,56 @@
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
   --radius: 16px;
   --radius2: 22px;
-  --maxw: 1040px;
+  --scrollYpx: 0px;
+  --maxw: 1100px;
+}
+
+.bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+
+  /* subtle parallax shift */
+  transform: translate3d(0, calc(var(--scrollYpx) / -35), 0);
+  will-change: transform;
+}
+
+.bgLayer{
+  position: absolute;
+  inset: -220px; /* gives room to drift without showing edges */
+  filter: blur(45px);
+  opacity: 0.95;
+  will-change: transform, background-position;
+}
+
+.bgLayer1{
+  background:
+    radial-gradient(900px 700px at 20% 15%, rgba(101, 120, 255, 0.28), transparent 60%),
+    radial-gradient(800px 650px at 75% 20%, rgba(111, 225, 255, 0.18), transparent 58%),
+    radial-gradient(900px 700px at 55% 85%, rgba(255, 153, 204, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(7,9,18,1) 0%, rgba(7,7,14,1) 100%);
+  animation: drift1 18s ease-in-out infinite alternate;
+}
+
+.bgLayer2{
+  background:
+    radial-gradient(900px 700px at 30% 80%, rgba(155, 106, 255, 0.12), transparent 62%),
+    radial-gradient(900px 700px at 85% 75%, rgba(80, 210, 255, 0.10), transparent 60%);
+  animation: drift2 24s ease-in-out infinite alternate;
+  mix-blend-mode: screen; /* optional; makes it feel more “alive” */
+  opacity: 0.55;
+}
+
+@keyframes drift1{
+  from { transform: translate3d(-30px, -20px, 0) scale(1.02); }
+  to   { transform: translate3d(40px, 30px, 0)  scale(1.05); }
+}
+
+@keyframes drift2{
+  from { transform: translate3d(40px, 10px, 0) scale(1.00); }
+  to   { transform: translate3d(-20px, -40px, 0) scale(1.06); }
 }
 
 * { box-sizing: border-box; }
@@ -17,10 +66,7 @@ html, body { height: 100%; }
 body{
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(101, 120, 255, 0.20), transparent 60%),
-              radial-gradient(900px 600px at 70% 20%, rgba(111, 225, 255, 0.14), transparent 55%),
-              radial-gradient(800px 600px at 60% 90%, rgba(255, 153, 204, 0.10), transparent 55%),
-              var(--bg);
+  background: #070912;
   color: var(--text);
 }
 
@@ -37,9 +83,9 @@ a:hover { text-decoration: underline; }
 .topbar{
   position: sticky;
   top: 0;
-  backdrop-filter: blur(10px);
-  background: rgba(11,13,18,0.55);
-  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  background: rgba(7,9,18,0.40);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   z-index: 10;
 }
 
@@ -208,6 +254,58 @@ a:hover { text-decoration: underline; }
   padding: 18px;
 }
 
+/* Experience / Education */
+.stack{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.role{
+  padding: 14px 14px 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+}
+
+.roleTopRow{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.roleTitle{
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  color: rgba(255,255,255,0.92);
+}
+
+.roleSep{
+  opacity: 0.65;
+}
+
+.roleDates{
+  font-size: 13px;
+  color: var(--muted2);
+  white-space: nowrap;
+}
+
+.roleOverview{
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.role .bullets{
+  margin-top: 10px;
+}
+
+.role .bullets li{
+  margin: 4px 0;
+}
+
 .focusList{
   margin: 0;
   padding-left: 18px;
@@ -287,4 +385,63 @@ a:hover { text-decoration: underline; }
   .hero h1{ font-size: 36px; }
   .grid{ grid-template-columns: 1fr; }
   .nav{ display: none; }
+
+  .roleTopRow{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .roleDates{
+    white-space: normal;
+  }
+}
+
+.inlineLink{
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.20);
+}
+.inlineLink:hover{ border-bottom-color: rgba(255,255,255,0.45); }
+
+.linkRow{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.mutedLabel{
+  font-size: 12px;
+  color: var(--muted2);
+  margin-right: 4px;
+}
+
+.pillLink{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-size: 12px;
+}
+.pillLink:hover{
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.06);
+}
+
+.badge{
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  margin-left: 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.90);
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
 }
