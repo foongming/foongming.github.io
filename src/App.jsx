@@ -49,13 +49,13 @@ export default function App() {
     <div className="page">
       <header className="topbar">
         <div className="container topbarInner">
-          <div className="brand">
+          {/* <div className="brand">
             <div className="avatar" aria-hidden="true">{profile.name[0]}</div>
             <div>
               <div className="brandName">{profile.name}</div>
               <div className="brandMeta">{profile.location}</div>
             </div>
-          </div>
+          </div> */}
           <nav className="nav">
             <a href="#focus">Focus</a>
             <a href="#projects">Projects</a>
@@ -92,7 +92,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="heroRight">
+          {/* <div className="heroRight">
             <div className="panel">
               <div className="panelTitle">What I bring</div>
               <ul className="bullets">
@@ -104,7 +104,7 @@ export default function App() {
                 Open to PM roles focused on LLM-enabled products and platform capabilities.
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         <div id="focus" />

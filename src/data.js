@@ -1,7 +1,7 @@
 export const profile = {
   name: "Foong Ming",
-  headline: "AI Product Manager · LLM systems, RAG, evaluation",
-  location: "Singapore",
+  headline: "AI Product Manager",
+  //location: "Singapore",
   blurb: [
     "I’m an AI product manager and recent NUS Master’s graduate focused on building practical, human-centered LLM products.",
     "Previously, I spent 8 years leading cross-functional teams and shipping AI products across Deep Packet Inspection, Consumer Insights, and Decarbonisation.",
