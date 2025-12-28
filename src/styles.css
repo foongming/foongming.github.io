@@ -146,6 +146,21 @@ a:hover { text-decoration: underline; }
   padding: 34px 0 10px;
 }
 
+.titleSection{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profileImage{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.20);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 .hero h1{
   margin: 0;
   font-size: 44px;

@@ -136,7 +136,14 @@ export default function App() {
       <main className="container">
         <section className="hero">
           <div className="heroLeft">
-            <h1>{profile.name}</h1>
+            <div className="titleSection">
+              <img 
+                src="/LFM.png" // uploaded image MUST be scaled 1:1
+                alt="Profile" 
+                className="profileImage" 
+              />
+              <h1>{profile.name}</h1>
+            </div>
             <p className="headline">{profile.headline}</p>
 
             <div className="blurb">
@@ -197,7 +204,7 @@ export default function App() {
                 {Array.isArray(e.highlights) && e.highlights.length > 0 ? (
                   <ul className="bullets">
                     {e.highlights.map((h) => (
-                      <li key={h}>{h}</li>
+                      <li key={h} dangerouslySetInnerHTML={{ __html: h }} />
                     ))}
                   </ul>
                 ) : null}

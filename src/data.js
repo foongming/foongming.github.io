@@ -1,7 +1,7 @@
 // src/data.js
 
 export const profile = {
-  name: "UNDER CONSTRUCTION by Foong Ming",
+  name: "Hi, I'm Foong Ming!",
   headline: "AI Product Manager | Social Impact & Climate Tech",
   // location: "Singapore",
   blurb: [
@@ -24,9 +24,9 @@ export const profile = {
       dates: "Aug 2023 – Dec 2025",
       highlights: [
         "GPA: 4.65/5.00",
-        "DSO–AISG Incentive Award for LLM Research",
-        "Capstone: Adapting LLMs for emotional-support chatbot interactions in low-resource dialects",
-        "Research Lab: AI for Social Good (AI4SG)",
+        "<a href='https://aisingapore.org/research/dso-aisg-research-awards/' target='_blank' rel='noopener noreferrer' style='text-decoration: underline;'>DSO–AISG Incentive Award for LLM Research</a>",
+        "Capstone: Speaking Your Language: Adapting LLMs for Singlish Emotional Support Chatbots",
+        "Research Lab: AI for Social Good (AI4SG) - <a href='https://ai4sg.org' target='_blank' rel='noopener noreferrer' style='text-decoration: underline;'>ai4sg.org</a>",
         "Teaching Assistant: CS5224 Cloud Computing"
       ]
     },
@@ -136,7 +136,7 @@ export const profile = {
           description: "Real-time map view of HDB listings with historical transaction trends."
         },
         {
-          title: "LightningCAT",
+          title: "LightningCAT (CS5224)",
           grade: "Grade: A-",
           href: "/CC-FinalReport.pdf",
           links: [
@@ -178,13 +178,13 @@ export const profile = {
           ],          
         },
         {
-          title: "Emotional Support Chatbot (CP5105)",
+          title: "Capstone Research Project (CP5105)",
           grade: "Grade: A+",
           href: "/CapstoneSlides_LAIFoongMing.pdf",
           links: [
             { label: "Slides", href: "/CapstoneSlides_LAIFoongMing.pdf" }
           ],
-          description: "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings."
+          description: "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect."
         },
         {
           title: "MCAT-How? (Ongoing)",
