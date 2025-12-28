@@ -62,7 +62,7 @@
 	{
 		"name": "BERT, Llama and friends tackle SQuADv1.0 (CS4248)",
 		"description": "Augmenting models to improve EM/F1 with focused experimentation and analysis.",
-		"image": "/assets/images/projects/broadcast-channel.png",
+		"image": "/assets/images/projects/BERT.png",
 		"url": "https://github.com/foongming/CS4248_Project",
 		"details": "Grade: A-. Augmenting models to improve EM/F1 with focused experimentation and analysis. Report: /NLP-Report.pdf.",
 		"category": "ai",
@@ -80,7 +80,7 @@
 	{
 		"name": "Capstone Research Project (CP5105)",
 		"description": "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
-		"image": "/assets/images/projects/long.png",
+		"image": "/assets/images/projects/capstone.png",
 		"url": "/CapstoneSlides_LAIFoongMing.pdf",
 		"details": "Grade: A+. Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
 		"category": "ai",
@@ -94,7 +94,7 @@
 	{
 		"name": "MCAT-How? (Ongoing)",
 		"description": "RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
-		"image": "/assets/images/projects/tempmail.best.png",
+		"image": "/assets/images/projects/MCAT.png",
 		"url": "",
 		"details": "Status: ongoing. RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
 		"category": "ai",

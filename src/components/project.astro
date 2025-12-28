@@ -1,6 +1,8 @@
 ---
 const { name, description, image, index, url, details, links } = Astro.props;
 const actionLinks = (links && links.length ? links : url ? [{ label: 'Visit project', href: url }] : []);
+const cardInteractionClasses = '';
+// const cardInteractionClasses = 'group cursor-pointer';
 ---
 
 <article
@@ -14,7 +16,7 @@ const actionLinks = (links && links.length ? links : url ? [{ label: 'Visit proj
   data-project-url={url || ''}
   data-project-links={JSON.stringify(actionLinks)}
   aria-label={`Read more about ${name}`}
-  class="relative flex flex-col items-stretch duration-300 ease-out p-7 sm:p-3 group h-100 rounded-2xl w-full text-left cursor-pointer bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700"
+  class={`relative flex flex-col items-stretch duration-300 ease-out p-7 sm:p-3 h-100 rounded-2xl w-full text-left bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 ${cardInteractionClasses}`}
 >
   <span
     class="absolute inset-0 z-20 block w-full h-full duration-300 ease-out bg-transparent border border-transparent border-dashed group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:border group-hover:border-neutral-300 dark:group-hover:border-neutral-600 group-hover:border-dashed rounded-2xl group-hover:bg-white dark:group-hover:bg-neutral-950"
