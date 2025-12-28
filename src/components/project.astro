@@ -15,6 +15,7 @@ const cardInteractionClasses = '';
   data-project-image={image}
   data-project-url={url || ''}
   data-project-links={JSON.stringify(actionLinks)}
+  data-project-card
   aria-label={`Read more about ${name}`}
   class={`relative flex flex-col items-stretch duration-300 ease-out p-7 sm:p-3 h-100 rounded-2xl w-full text-left bg-transparent border-0 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700 ${cardInteractionClasses}`}
 >
@@ -25,7 +26,7 @@ const cardInteractionClasses = '';
     class="absolute inset-0 z-10 block w-full h-full duration-300 ease-out border border-dashed rounded-2xl border-neutral-300 dark:border-neutral-600 group-hover:translate-x-1 group-hover:translate-y-1"
   ></span>
   <span
-    class="relative z-30 block duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1"
+    class="relative z-30 flex flex-col h-full duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1"
   >
     <span class="block w-full">
       <img src={image} class="w-full h-auto rounded-lg aspect-[16/9] object-cover" />
@@ -74,7 +75,7 @@ const cardInteractionClasses = '';
     </span>
     {
       actionLinks.length ? (
-        <span class="block w-full px-1 mt-3">
+        <span class="block w-full px-1 mt-auto pt-3">
           <span class="flex flex-wrap gap-2">
             {
               actionLinks.map((link) => (

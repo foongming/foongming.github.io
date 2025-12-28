@@ -100,6 +100,24 @@ const inactivePillClasses =
       });
     };
 
+    const normalizeCardHeights = () => {
+      const cards = Array.from(document.querySelectorAll('[data-project-card]')).filter((card) => {
+        const wrapper = card.closest('[data-project-category]');
+        return wrapper && !wrapper.classList.contains('hidden');
+      });
+
+      if (!cards.length) return;
+
+      cards.forEach((card) => {
+        card.style.height = 'auto';
+      });
+
+      const maxHeight = Math.max(...cards.map((card) => card.offsetHeight));
+      cards.forEach((card) => {
+        card.style.height = `${maxHeight}px`;
+      });
+    };
+
     const initializeFilters = () => {
       const grid = document.querySelector('[data-project-grid]');
       const defaultCategory = grid?.dataset.defaultCategory || 'ai';
@@ -109,6 +127,7 @@ const inactivePillClasses =
       const applyCategory = (category) => {
         pills.forEach((pill) => setPillState(pill, pill.dataset.category === category));
         filterProjects(category);
+        requestAnimationFrame(normalizeCardHeights);
       };
 
       pills.forEach((pill) => {
@@ -116,6 +135,14 @@ const inactivePillClasses =
       });
 
       applyCategory(defaultCategory);
+
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(resizeTimeout);
+        resizeTimeout = window.setTimeout(normalizeCardHeights, 150);
+      });
+
+      window.addEventListener('load', normalizeCardHeights);
     };
 
     if (document.readyState === 'loading') {

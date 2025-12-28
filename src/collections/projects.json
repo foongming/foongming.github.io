@@ -98,6 +98,11 @@
 		"url": "",
 		"details": "Status: ongoing. RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
 		"category": "ai",
-		"links": []
+		"links": [
+			{
+				"label": "GitHub",
+				"href": "https://github.com/foongming/MCATHow"
+			}
+		]
 	}
 ]
