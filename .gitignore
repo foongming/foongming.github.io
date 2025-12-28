@@ -1,5 +1,16 @@
-node_modules
-dist
+node_modules/
+dist/
+.astro/
+.vite/
+
+# Env and system files
 .DS_Store
 .env
 .env.*
+
+# Editor and debug logs
+.idea/
+.vscode/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

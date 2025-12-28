@@ -1,0 +1,127 @@
+---
+import projects from "../collections/projects.json";
+import PageHeading from "../components/page-heading.astro";
+import Project from "../components/project.astro";
+import ProjectModal from "../components/project-modal.astro";
+import Layout from "../layouts/main.astro";
+
+const categories = [
+  { key: "ai", label: "AI/LLM" },
+  { key: "webapp", label: "WebApp" },
+];
+const defaultCategory = "ai";
+const activePillClasses =
+  "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 shadow-sm";
+const inactivePillClasses =
+  "bg-neutral-100 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800";
+---
+
+<Layout title="My Projects">
+  <section class="relative z-20 max-w-2xl mx-auto my-12 px-7 lg:px-0">
+    <PageHeading
+      title="My Projects"
+      description="I just graduated (for the second time!) with a Masters in Computing, and here are some of the CS projects I worked on!"
+    />
+
+    <div class="flex items-center gap-3 mt-6">
+      {
+        categories.map((category) => (
+          <button
+            type="button"
+            data-category-pill
+            data-category={category.key}
+            aria-pressed={category.key === defaultCategory}
+            class={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-colors duration-150 ${category.key === defaultCategory ? activePillClasses : inactivePillClasses}`}
+          >
+            {category.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div
+      class="z-50 grid items-stretch w-full grid-cols-1 my-8 gap-7 sm:gap-5 sm:grid-cols-2"
+      data-project-grid
+      data-default-category={defaultCategory}
+    >
+      {
+        projects.map((project, index) => (
+          <div
+            data-project-category={project.category || "ai"}
+            class={`w-full ${project.category && project.category !== defaultCategory ? "hidden" : ""}`}
+          >
+            <Project
+              name={project.name}
+              description={project.description}
+              image={project.image}
+              details={project.details}
+              index={index}
+              url={project.url}
+              links={project.links}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <ProjectModal projects={projects} />
+  </section>
+
+  <script is:inline>
+    const activeClasses = [
+      'bg-neutral-900',
+      'text-white',
+      'dark:bg-neutral-100',
+      'dark:text-neutral-900',
+      'shadow-sm',
+    ];
+
+    const inactiveClasses = [
+      'bg-neutral-100',
+      'text-neutral-700',
+      'dark:bg-neutral-900',
+      'dark:text-neutral-300',
+      'border',
+      'border-neutral-200',
+      'dark:border-neutral-800',
+    ];
+
+    const setPillState = (pill, isActive) => {
+      pill.setAttribute('aria-pressed', String(isActive));
+      activeClasses.forEach((cls) => pill.classList.toggle(cls, isActive));
+      inactiveClasses.forEach((cls) => pill.classList.toggle(cls, !isActive));
+    };
+
+    const filterProjects = (category) => {
+      const cards = document.querySelectorAll('[data-project-category]');
+      cards.forEach((card) => {
+        const cardCategory = (card.getAttribute('data-project-category') || '').toLowerCase();
+        card.classList.toggle('hidden', cardCategory !== category);
+      });
+    };
+
+    const initializeFilters = () => {
+      const grid = document.querySelector('[data-project-grid]');
+      const defaultCategory = grid?.dataset.defaultCategory || 'ai';
+      const pills = Array.from(document.querySelectorAll('[data-category-pill]'));
+      if (!pills.length) return;
+
+      const applyCategory = (category) => {
+        pills.forEach((pill) => setPillState(pill, pill.dataset.category === category));
+        filterProjects(category);
+      };
+
+      pills.forEach((pill) => {
+        pill.addEventListener('click', () => applyCategory(pill.dataset.category));
+      });
+
+      applyCategory(defaultCategory);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeFilters);
+    } else {
+      initializeFilters();
+    }
+  </script>
+</Layout>

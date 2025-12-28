@@ -1,0 +1,60 @@
+[
+	{
+		"dates": "Aug 2022 – Nov 2024",
+		"role": "Senior Product Manager",
+		"company": "Terrascope",
+		"description": "B2B SaaS platform for carbon accounting and decarbonisation planning.",
+		"highlights": [
+			"Shipped four AI-enabled products in nine months to evolve the platform from measurement into end-to-end decarbonisation planning.",
+			"Reduced lead time for new AI capabilities from months to days by driving MVP delivery; launched industry-standard MACC capability.",
+			"Owned product vision and roadmap through close engagement with clients and decarbonisation practitioners, aligned to GHG standards and regulatory requirements."
+		],
+		"logo": "/public/assets/images/experiences/terrascope_logo.jpeg"
+	},
+	{
+		"dates": "Nov 2021 – Jul 2022",
+		"role": "Product Lead",
+		"company": "This Is Synthesis",
+		"description": "Boutique consumer insights consultancy building analytics products using open data.",
+		"highlights": [
+			"Led a start-up team developing data-science-enabled analytics products for Fortune 500 consumer insights teams.",
+			"Doubled engineering velocity in one month by revamping release management.",
+			"Set up a continuous user research stream and integrated insights into the product backlog."
+		],
+		"logo": "/public/assets/images/experiences/synthesis_logo.png"
+	},
+	{
+		"dates": "Jul 2021 – Nov 2021",
+		"role": "Product Lead (Business Solutions)",
+		"company": "Mobileum",
+		"description": "Telecom analytics provider; role focused on post-acquisition growth of the business solutions suite.",
+		"highlights": [
+			"Owned an offerings suite to improve telco marketing ROI via AI-driven targeting.",
+			"Partnered with CXOs to align product strategy with post-acquisition business objectives."
+		],
+		"logo": "/public/assets/images/experiences/mobileum.png"
+	},
+	{
+		"dates": "Aug 2019 – Jun 2021",
+		"role": "Solutions Manager",
+		"company": "Niometrics (acquired by Mobileum)",
+		"description": "Deep packet inspection (DPI) analytics startup originating from A*STAR.",
+		"highlights": [
+			"Brought to market a proprietary data monetisation solution, reducing customer segmentation lead time from weeks to under 60 seconds and displacing an incumbent at a Tier-1 telco.",
+			"Kickstarted a new enterprise product line; delivered a 5G IoT enterprise network analytics solution from 0→1 in three months.",
+			"Advised telco clients on using analytics to increase ARPU and campaign effectiveness."
+		],
+		"logo": "public/assets/images/experiences/niometrics_logo.jpeg"
+	},
+	{	
+		"dates": "Oct 2018 – Jul 2019",
+		"role": "Solutions Analyst",
+		"company": "Niometrics (acquired by Mobileum)",
+		"description": "Product/solutions role spanning requirements, delivery, and stakeholder alignment with Tier-1 telcos.",
+		"highlights": [
+			"Developed MRDs with client partnership teams and collaborated with design, engineering, and QA to deliver robust solutions.",
+			"Delivered a real-time network performance monitoring product by driving development and shaping use cases with Tier-1 telco stakeholders."
+		],
+		"logo": "public/assets/images/experiences/niometrics_logo.jpeg"
+	}
+]

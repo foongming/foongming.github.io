@@ -1,0 +1,204 @@
+---
+const { projects } = Astro.props;
+const serializedProjects = JSON.stringify(projects);
+---
+
+<div>
+  <script
+    type="application/json"
+    id="project-data"
+    set:html={serializedProjects.replace(/</g, "\\u003c")}
+  ></script>
+
+  <div
+    id="project-modal"
+    class="fixed inset-0 z-[60] hidden items-center justify-center px-5 py-8"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="project-modal-title"
+  >
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" data-close></div>
+
+    <div
+      class="relative w-full max-w-4xl bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-2xl overflow-hidden"
+    >
+      <button
+        class="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/80 dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:scale-105 transition"
+        type="button"
+        data-close
+        aria-label="Close project details"
+      >
+        <span class="text-lg">&times;</span>
+      </button>
+
+      <div class="grid gap-6 p-6 md:gap-8 md:p-8 md:grid-cols-2">
+        <div
+          class="relative overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-900 aspect-[16/10]"
+        >
+          <img
+            data-project-image
+            src=""
+            alt=""
+            class="object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="flex flex-col gap-3 text-neutral-700 dark:text-neutral-300">
+          <p
+            id="project-modal-title"
+            data-project-title
+            class="text-2xl font-semibold text-neutral-900 dark:text-neutral-50"
+          ></p>
+          <p
+            data-project-description
+            class="text-sm leading-6 text-neutral-600 dark:text-neutral-400"
+          ></p>
+          <p
+            data-project-details
+            class="text-sm leading-6 text-neutral-700 dark:text-neutral-300 whitespace-pre-line"
+          ></p>
+
+          <div class="flex flex-wrap gap-3 mt-4" data-project-actions></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const initProjectModal = () => {
+      const dataEl = document.getElementById('project-data');
+      const modal = document.getElementById('project-modal');
+      if (!modal) return;
+
+      let projectList = [];
+      if (dataEl) {
+        try {
+          projectList = JSON.parse(dataEl.textContent || '[]');
+        } catch (error) {
+          console.error('Unable to parse project data', error);
+        }
+      }
+
+      const modalImage = modal.querySelector('[data-project-image]');
+      const modalTitle = modal.querySelector('[data-project-title]');
+      const modalDescription = modal.querySelector('[data-project-description]');
+      const modalDetails = modal.querySelector('[data-project-details]');
+      const actionContainer = modal.querySelector('[data-project-actions]');
+      const closeTriggers = modal.querySelectorAll('[data-close]');
+      const body = document.body;
+
+      const renderActions = (links = [], url = '') => {
+        if (!actionContainer) return;
+        actionContainer.innerHTML = '';
+
+        const normalizedLinks = Array.isArray(links) ? links : [];
+        const fallbackLink = url ? [{ label: 'Visit project', href: url }] : [];
+        const linkList = normalizedLinks.length ? normalizedLinks : fallbackLink;
+
+        linkList.forEach((link) => {
+          if (!link?.href) return;
+          const anchor = document.createElement('a');
+          anchor.target = '_blank';
+          anchor.rel = 'noreferrer';
+          anchor.href = link.href;
+          anchor.textContent = link.label || 'Visit project';
+          anchor.className =
+            'inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-neutral-900 rounded-lg hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white transition-colors';
+
+          actionContainer.appendChild(anchor);
+        });
+      };
+
+      const openModal = (project) => {
+        modalTitle.textContent = project.name || '';
+        modalDescription.textContent = project.description || '';
+        modalDetails.textContent = project.details || project.description || '';
+
+        if (modalImage) {
+          modalImage.src = project.image || '';
+          modalImage.alt = project.name || '';
+        }
+
+        renderActions(project.links, project.url);
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        body.classList.add('overflow-hidden');
+      };
+
+      const closeModal = () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        body.classList.remove('overflow-hidden');
+      };
+
+      const getProjectFromCard = (card) => {
+        const index = Number(card.getAttribute('data-project-index'));
+        let project = projectList[index];
+
+        if (!project) {
+          let links = [];
+          try {
+            links = JSON.parse(card.getAttribute('data-project-links') || '[]');
+          } catch {
+            links = [];
+          }
+
+          project = {
+            name: card.getAttribute('data-project-name') || '',
+            description: card.getAttribute('data-project-description') || '',
+            details: card.getAttribute('data-project-details') || '',
+            image: card.getAttribute('data-project-image') || '',
+            url: card.getAttribute('data-project-url') || '',
+            links,
+          };
+        }
+
+        return project;
+      };
+
+      const openFromCard = (card) => {
+        const project = getProjectFromCard(card);
+        if (project) {
+          openModal(project);
+        }
+      };
+
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('[data-project-action]')) return;
+
+        const card = event.target.closest('[data-project-index]');
+        if (!card) return;
+
+        event.preventDefault();
+        openFromCard(card);
+      });
+
+      closeTriggers.forEach((element) => {
+        element.addEventListener('click', closeModal);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if ((event.key === 'Enter' || event.key === ' ') && document.activeElement) {
+          const focusedCard = document.activeElement.closest('[data-project-index]');
+          if (focusedCard) {
+            event.preventDefault();
+            openFromCard(focusedCard);
+            return;
+          }
+        }
+
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initProjectModal);
+    } else {
+      initProjectModal();
+    }
+  </script>
+</div>

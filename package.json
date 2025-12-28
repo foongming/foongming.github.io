@@ -1,19 +1,23 @@
 {
-  "name": "foongming-github-io",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^5.4.11"
-  }
+	"name": "certain-conjunction",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"check": "biome check --apply-unsafe ."
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.6",
+		"@astrojs/tailwind": "^6.0.2",
+		"@biomejs/biome": "1.7.3",
+		"@tailwindcss/typography": "^0.5.13",
+		"astro": "^5.16.6",
+		"tailwindcss": "^3.4.3",
+		"typescript": "^5.4.5"
+	},
+	"packageManager": "pnpm@9.12.2"
 }

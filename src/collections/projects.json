@@ -1,0 +1,103 @@
+[
+	{
+		"name": "Hit the Jackpot! (IT5007)",
+		"description": "Real-time map view of HDB listings with historical transaction trends.",
+		"image": "/assets/images/projects/it5007image.png",
+		"url": "https://github.com/foongming/IT5007Project",
+		"details": "Grade: A. Real-time map view of HDB listings with historical transaction trends.",
+		"category": "webapp",
+		"links": [
+			{
+				"label": "GitHub",
+				"href": "https://github.com/foongming/IT5007Project"
+			}
+		]
+	},
+	{
+		"name": "LightningCAT (CS5224)",
+		"description": "Map-first ActiveSG-style web app concept with lightweight recommendations.",
+		"image": "/assets/images/projects/ccimage.png",
+		"url": "/CC-FinalReport.pdf",
+		"details": "Grade: A-. Map-first ActiveSG-style web app concept with lightweight recommendations.",
+		"category": "webapp",
+		"links": [
+			{
+				"label": "Report",
+				"href": "/CC-FinalReport.pdf"
+			}
+		]
+	},
+	{
+		"name": "Endomondo Dataset Exploration (IT5100F)",
+		"description": "EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
+		"image": "/assets/images/projects/it5100fimage.png",
+		"url": "https://foongming.github.io/it5100f/IT5100F.html",
+		"details": "Grade: A+. EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
+		"category": "ai",
+		"links": [
+			{
+				"label": "Python Notebook",
+				"href": "https://foongming.github.io/it5100f/IT5100F.html"
+			}
+		]
+	},
+	{
+		"name": "News Bias Classification (CS5242)",
+		"description": "Ideological bias classification: transformer vs. classical baselines; evaluation-focused experimentation.",
+		"image": "/assets/images/projects/NNDLimage.png",
+		"url": "https://github.com/foongming/CS5242Project",
+		"details": "Grade: A-. Ideological bias classification: transformer vs. classical baselines; evaluation-focused experimentation. Slides: /NN-Presentation.pdf.",
+		"category": "ai",
+		"links": [
+			{
+				"label": "Python Notebook",
+				"href": "https://github.com/foongming/CS5242Project/blob/main/report.ipynb"
+			},
+			{
+				"label": "Slides",
+				"href": "/NN-Presentation.pdf"
+			}
+		]
+	},
+	{
+		"name": "BERT, Llama and friends tackle SQuADv1.0 (CS4248)",
+		"description": "Augmenting models to improve EM/F1 with focused experimentation and analysis.",
+		"image": "/assets/images/projects/broadcast-channel.png",
+		"url": "https://github.com/foongming/CS4248_Project",
+		"details": "Grade: A-. Augmenting models to improve EM/F1 with focused experimentation and analysis. Report: /NLP-Report.pdf.",
+		"category": "ai",
+		"links": [
+			{
+				"label": "Report",
+				"href": "/NLP-Report.pdf"
+			},
+			{
+				"label": "GitHub",
+				"href": "https://github.com/foongming/CS4248_Project"
+			}
+		]
+	},
+	{
+		"name": "Capstone Research Project (CP5105)",
+		"description": "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
+		"image": "/assets/images/projects/long.png",
+		"url": "/CapstoneSlides_LAIFoongMing.pdf",
+		"details": "Grade: A+. Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
+		"category": "ai",
+		"links": [
+			{
+				"label": "Slides",
+				"href": "/CapstoneSlides_LAIFoongMing.pdf"
+			}
+		]
+	},
+	{
+		"name": "MCAT-How? (Ongoing)",
+		"description": "RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
+		"image": "/assets/images/projects/tempmail.best.png",
+		"url": "",
+		"details": "Status: ongoing. RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
+		"category": "ai",
+		"links": []
+	}
+]
