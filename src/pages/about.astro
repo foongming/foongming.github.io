@@ -3,6 +3,35 @@ import experiences from "../collections/experiences.json";
 import AboutExperience from "../components/about-experience.astro";
 import PageHeading from "../components/page-heading.astro";
 import Layout from "../layouts/main.astro";
+
+const education = [
+  {
+    degree: "Master of Computing",
+    school: "National University of Singapore",
+    dates: "Aug 2023 – Dec 2025",
+    logo: "/assets/images/experiences/nus_logo.jpg",
+    highlights: [
+      "GPA: 4.65/5.00",
+      "<a href='https://aisingapore.org/research/dso-aisg-research-awards/' target='_blank' rel='noopener noreferrer' style='text-decoration: underline;'>DSO–AISG Incentive Award for LLM Research</a>",
+      "Capstone: Speaking Your Language - </br> Adapting LLMs for Singlish Emotional Support Chatbots",
+      "Research Lab: AI for Social Good (AI4SG) - <a href='https://ai4sg.org' target='_blank' rel='noopener noreferrer' style='text-decoration: underline;'>ai4sg.org</a>",
+      "Teaching Assistant: CS5224 Cloud Computing"
+    ]
+  },
+  {
+    degree: "Bachelor of Business Management (Finance & Marketing)",
+    school: "Singapore Management University",
+    dates: "Aug 2012 – Jun 2016",
+    logo: "/assets/images/experiences/smu_logo.png",
+    highlights: [
+      "GPA: 3.44/4.00 (Cum Laude)",
+      "Teaching Assistant: IS102 Computer as an Analysis Tool",
+      "Exchange to BI Norwegian Business School",
+      "Summer Exchange to Seoul National University"
+      
+    ]
+  }
+];
 ---
 
 <Layout title="About Me">
@@ -24,6 +53,31 @@ import Layout from "../layouts/main.astro";
       Front-end cutter 🧑🏻‍💻, back-end amateur 🤷🏻‍♂️, operations digging holes person 🤦🏻‍♂️.
     </p>
     */}
+
+    <h2
+      class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
+    >
+      Education
+    </h2>
+    <div class="px-5 py-10">
+      {
+        education.map((entry) => {
+          return (
+            <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
+              <AboutExperience
+                dates={entry.dates}
+                role={entry.degree}
+                company={entry.school}
+                highlights={entry.highlights}
+                highlightsAsHtml={true}
+                logo={entry.logo}
+                logoText="EDU"
+              />
+            </div>
+          )
+        })
+      }
+    </div>
 
     <h2
       class="mt-5 mb-2 text-2xl font-bold lg:mt-10 sm:mt-6 dark:text-neutral-200"
