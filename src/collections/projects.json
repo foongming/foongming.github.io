@@ -27,17 +27,17 @@
 			}
 		]
 	},
-	{
-		"name": "Endomondo Dataset Exploration (IT5100F)",
-		"description": "EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
-		"image": "/assets/images/projects/it5100fimage.png",
-		"url": "https://foongming.github.io/it5100f/IT5100F.html",
-		"details": "Grade: A+. EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
+		{
+		"name": "Capstone Research Project (CP5105)",
+		"description": "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
+		"image": "/assets/images/projects/capstone.png",
+		"url": "/CapstoneSlides_LAIFoongMing.pdf",
+		"details": "Grade: A+. Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
 		"category": "ai",
 		"links": [
 			{
-				"label": "Python Notebook",
-				"href": "https://foongming.github.io/it5100f/IT5100F.html"
+				"label": "Slides",
+				"href": "/CapstoneSlides_LAIFoongMing.pdf"
 			}
 		]
 	},
@@ -77,20 +77,21 @@
 			}
 		]
 	},
-	{
-		"name": "Capstone Research Project (CP5105)",
-		"description": "Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
-		"image": "/assets/images/projects/capstone.png",
-		"url": "/CapstoneSlides_LAIFoongMing.pdf",
-		"details": "Grade: A+. Adapting LLMs for emotional-support interactions in low-resource / colloquial dialect settings and their effects on user perceptions and affect.",
+		{
+		"name": "Endomondo Dataset Exploration (IT5100F)",
+		"description": "EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
+		"image": "/assets/images/projects/it5100fimage.png",
+		"url": "https://foongming.github.io/it5100f/IT5100F.html",
+		"details": "Grade: A+. EDA, PCA, and exercise prediction with Random Forest using only the first 60 seconds of activity data.",
 		"category": "ai",
 		"links": [
 			{
-				"label": "Slides",
-				"href": "/CapstoneSlides_LAIFoongMing.pdf"
+				"label": "Python Notebook",
+				"href": "https://foongming.github.io/it5100f/IT5100F.html"
 			}
 		]
 	},
+
 	{
 		"name": "MCAT-How? (Ongoing)",
 		"description": "RAG assistant that personalizes MCAT study plans to user constraints and baseline knowledge.",
