@@ -105,5 +105,23 @@
 				"href": "https://github.com/foongming/MCATHow"
 			}
 		]
+	},
+	{
+		"name": "CaringSG",
+		"description": "Made for the interview process at Open Government Products (OGP) in Jan 2026. A companion app to help caregivers manage their elderly dependents' health and well-being.",
+		"image": "/assets/images/projects/CaringSGPic.jpg",
+		"url": "",
+		"details": "A companion app to caregivers that enables them to quickly and effectively follow and log care routines for their dependents, in a way that can be reviewed by clinicians in <60s.",
+		"category": "prd",
+		"links": [
+			{
+				"label": "2 Pager",
+				"href": "/caringsg/CaringSG-writeup.pdf"
+			}, 
+			{
+				"label": "Slides", 
+				"href": "/caringsg/CaringSG-slides.pdf"
+			}
+		]
 	}
 ]
